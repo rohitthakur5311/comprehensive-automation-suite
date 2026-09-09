@@ -1,0 +1,23 @@
+{
+  "project": "Comprehensive Automation Suite",
+  "version": "1.0.0",
+  "language": "Python",
+  "interfaces": [
+    "Tkinter GUI",
+    "CLI"
+  ],
+  "modules": [
+    "File Organizer",
+    "Web Scraper",
+    "Email Automation",
+    "System Monitor",
+    "Task Scheduler",
+    "Workflow Designer"
+  ],
+  "exports": [
+    "CSV",
+    "JSON",
+    "XLSX"
+  ],
+  "reference_screenshots": 6
+}

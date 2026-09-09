@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Daily Backup",
+    "frequency": "daily 00:00",
+    "job": "backup"
+  },
+  {
+    "name": "Weekly Report",
+    "frequency": "daily 08:00",
+    "job": "report"
+  },
+  {
+    "name": "Database Cleanup",
+    "frequency": "daily 03:00",
+    "job": "cleanup"
+  },
+  {
+    "name": "Email Campaign",
+    "frequency": "daily 10:00",
+    "job": "email_campaign"
+  }
+]

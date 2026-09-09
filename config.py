@@ -1,0 +1,53 @@
+"""Central configuration loader."""
+from pathlib import Path
+import json
+import os
+
+BASE_DIR = Path(__file__).resolve().parent
+CONFIG_FILE = BASE_DIR / "configs" / "config.json"
+
+DEFAULT_CONFIG = {
+    "file_organizer": {
+        "categories": {
+            "Documents": [".pdf", ".doc", ".docx", ".txt", ".xlsx", ".csv", ".ppt", ".pptx"],
+            "Images": [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"],
+            "Videos": [".mp4", ".mkv", ".avi", ".mov", ".webm"],
+            "Audio": [".mp3", ".wav", ".flac", ".m4a"],
+            "Archives": [".zip", ".rar", ".7z", ".tar", ".gz"]
+        }
+    },
+    "web_scraper": {
+        "delay_seconds": 1.5,
+        "timeout_seconds": 15,
+        "respect_robots_txt": True,
+        "user_agents": [
+            "AutomationSuite/1.0 (+https://example.com/bot-info)",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36"
+        ],
+        "proxies": []
+    },
+    "system_monitor": {
+        "cpu_alert_percent": 85,
+        "memory_alert_percent": 85,
+        "disk_alert_percent": 90
+    },
+    "scheduler": {
+        "tasks_file": "configs/tasks.json"
+    },
+    "email": {
+        "default_template": "templates/default_email.html"
+    }
+}
+
+def load_config():
+    if not CONFIG_FILE.exists():
+        CONFIG_FILE.parent.mkdir(parents=True, exist_ok=True)
+        CONFIG_FILE.write_text(json.dumps(DEFAULT_CONFIG, indent=2), encoding="utf-8")
+    data = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+    return data
+
+def env_bool(name, default=False):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.lower() in {"1", "true", "yes", "on"}
